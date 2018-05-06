@@ -13,7 +13,7 @@
 	
 	include '../../../../database_conn.php';		
 	$title = "{title}";
-	$sql = "SELECT * FROM article WHERE Title = '$title'";			
+	$sql = "SELECT * FROM article WHERE Title = '$title' AND DATE = '$date'";			
 	$result = $conn->query($sql);
 			
 	while($row = $result->fetch_assoc())
@@ -37,7 +37,7 @@
 		echo "<div class=\"col-lg-12 articleText\">";	
 		echo "$content";		
 		echo "</div>";
-	}	
+	}
 	mysqli_close($conn);
 	
 	$page->getMainBottom();
