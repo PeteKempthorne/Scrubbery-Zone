@@ -1,0 +1,186 @@
+
+body
+{
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 16px;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	background-image: url("/img/citiesback.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	
+}
+
+html
+{
+	font-size: 14px;
+}
+
+.navbar
+{
+	background-color: #5B0505;
+	font-family: Do Hyeon;
+	font-size: 32px;
+}
+
+.nav-item a
+{
+	color:white;
+	text-decoration:none;
+	padding-right: 30px;
+	font-size: 24px;	
+}
+
+.nav-item a:hover, a:active {
+	color: #ccc;
+	text-decoration: none;
+	text-shadow: 1px 1px 1px #000;
+}
+
+.splashy img {
+    opacity: 0.4;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+.splashTitle{
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform:translate(-50%,-50%);
+	-ms-transform:translate(-50%,-50%);	
+}
+
+.splashTitle #xlrg1{
+	color:black;
+	font-family: Do Hyeon;
+	font-size:42px;
+}
+
+.splashText{
+	position: absolute;
+	top: 60%;
+	left: 50%;
+	transform:translate(-50%,-50%);
+	-ms-transform:translate(-50%,-50%);	
+}
+
+.splashText #xlrg1{
+	color:black;
+	font-family: Do Hyeon;
+	font-size:42px;
+}
+
+.botty
+{
+	background-color: white;
+	font-family: Do Hyeon;
+	font-size: 16px;
+	text-align: center;	
+}
+
+.bottyCol
+{
+	background-color: #5B0505;
+	color: white;
+	font-family: Do Hyeon;
+	font-size: 16px;
+	text-align: center;	
+}
+
+.mainCont
+{
+	padding-right:0px;
+    padding-left:0px;
+}
+
+.articleBar
+{
+	background-color: #5B0505;
+	color: white;
+	font-family: Do Hyeon;
+	font-size: 16px;
+	text-align: center;	
+
+}
+
+.rightBar
+{
+	background-color: #5B0505;
+	color: white;
+	font-family: Do Hyeon;
+	font-size: 16px;
+	text-align: center;	
+}
+
+.articleTitle
+{
+	text-align: center;	
+	border-left: 2px solid #5B0505;
+	border-bottom: 2px solid #5B0505;
+	border-right: 2px solid #5B0505;
+	background-color:white;
+}
+
+.articleDate
+{
+	text-align: center;	
+	font-size: 12px;
+	border-right: 2px solid #5B0505;
+	border-bottom: 2px solid #5B0505;
+	background-color:white;
+}
+
+.articleImage
+{
+	padding-top:10px;
+	padding-bottom:10px;
+	border-left: 2px solid #5B0505;
+	border-right: 2px solid #5B0505;
+	background-color:white;
+}
+
+.articleText
+{
+	padding-top:10px;
+	border-left: 2px solid #5B0505;
+	border-right: 2px solid #5B0505;
+	border-bottom: 2px solid #5B0505;
+	background-color:white;
+}
+
+.addArticleForm
+{	
+	border: 2px solid #5B0505;
+	background-color:white;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.form-group
+{	
+	
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.sideLane
+{
+	border-right: 2px solid #5B0505;
+	border-bottom: 2px solid #5B0505;
+	background-color:white;
+	
+}
+
+.row.no-pad 
+{
+  margin-right:0;
+  margin-left:0;
+}
+.row.no-pad > [class*='col-'] 
+{
+  padding-right:0;
+  padding-left:0;
+}
+
