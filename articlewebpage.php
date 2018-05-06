@@ -32,7 +32,7 @@
 		echo "	<div class=\"col-3 articleDate\">$date</div>";					
 		echo "</div>";
 		echo "<div class=\"col-lg-12 articleImage\">";
-		echo "  <img src=\"/img/$image\" class=\"img-fluid\"/>";	
+		echo "  <img src=\"/img/$image\" class=\"img-fluid\" alt=\"$title\" />";	
 		echo "</div>";	
 		echo "<div class=\"col-lg-12 articleText\">";	
 		echo "$content";		
