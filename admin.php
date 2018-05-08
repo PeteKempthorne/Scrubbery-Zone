@@ -24,6 +24,7 @@
 				<p>
 					<ul>
 						<li><a href="add-article.php">Add Article</a></li>
+						<li><a href="imgupload.php">Upload Image</a></li>
 						<li><a href="logout.php">Logout</a></li>
 					</ul>
 				</p>
