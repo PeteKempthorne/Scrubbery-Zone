@@ -152,17 +152,62 @@ Version 1.0
 					</div>
 					<?php
 					include 'database_conn.php';		
-					$sql = "SELECT * FROM article ORDER BY Date DESC LIMIT 5";			
-					$result = $conn->query($sql);
+					//$sql = "SELECT * FROM article ORDER BY ArticleID DESC LIMIT 5";			
+					//$result = $conn->query($sql);
 						
-					while($row = $result->fetch_assoc())
+					//while($row = $result->fetch_assoc())
+					//{
+					//	$title = $row['Title'];
+					//	$date = $row['Date'];
+					//	$image = $row['Image'];
+					//	$content = $row['Content'];
+					//	$linky = $row['PageLink'];
+						
+					//	$contentShrink = substr($content, 0, 150);
+					//	echo "<div class=\"row no-pad\">";
+					//	echo "	<div class=\"col-9 articleTitle\">";
+					//	echo "	<h4>$title</h4>";
+					//	echo "</div>";
+					//	echo "	<div class=\"col-3 articleDate\">$date</div>";					
+					//	echo "</div>";
+					//	echo "<div class=\"col-lg-12 articleImage\">";
+					//	echo "  <img src=\"img/$image\" class=\"img-fluid\"/>";	
+					//	echo "</div>";	
+					//	echo "<div class=\"col-lg-12 articleText\">";	
+					//	echo "	<p>$contentShrink...</p>";	
+					//	echo "	<p><a href=\"article/$linky.php\">Click here to read more...</a></p>";	
+					//	echo "</div>";	
+						
+					//}	
+					//Pagination is adapated from a tutorial
+					if (isset($_GET['pageno'])) 
+					{
+						$pageno = $_GET['pageno'];
+					} 
+					else
+					{
+						$pageno = 1;
+					}		
+					$articlesPerPage = 5; // 5 articles per page currently. easily adjusted here	
+					$offset = ($pageno - 1) * $articlesPerPage;	//
+					
+					$sql2 = "SELECT COUNT(*) FROM article";		
+					$result2 = $conn->query($sql2);
+					$total_row = mysqli_fetch_row($result2);  
+					$totalArticles = $total_row[0]; //number of articles in db
+					$totalPages = ceil($totalArticles / $articlesPerPage); //no of record divided by articles per page. Ceil function to round up fractions
+					
+					$pagSql = "SELECT * FROM article ORDER BY ArticleID DESC LIMIT $offset, $articlesPerPage";
+					$ragResult = $conn->query($pagSql);
+					while($row = $ragResult->fetch_assoc())
 					{
 						$title = $row['Title'];
 						$date = $row['Date'];
 						$image = $row['Image'];
 						$content = $row['Content'];
-						$linky = $row['PageLink'];
+						$linky = $row['PageLink'];						
 						
+						//Dont want entire article posted to front page so using a shortened bit from the start of the article and then adding a link to click through to the article
 						$contentShrink = substr($content, 0, 150);
 						echo "<div class=\"row no-pad\">";
 						echo "	<div class=\"col-9 articleTitle\">";
@@ -171,16 +216,28 @@ Version 1.0
 						echo "	<div class=\"col-3 articleDate\">$date</div>";					
 						echo "</div>";
 						echo "<div class=\"col-lg-12 articleImage\">";
-						echo "  <img src=\"img/$image\" class=\"img-fluid\"/>";	
+						//Making the iamge also a link to click through
+						echo "  <a href=\"article/$linky.php\"><img src=\"img/$image\" class=\"img-fluid\" alt\"$title\"/></a>";	
 						echo "</div>";	
 						echo "<div class=\"col-lg-12 articleText\">";	
 						echo "	<p>$contentShrink...</p>";	
 						echo "	<p><a href=\"article/$linky.php\">Click here to read more...</a></p>";	
-						echo "</div>";	
-						
-					}	
-					mysqli_close($conn);
+						echo "</div>";
+					}
+					mysqli_close($conn);					
 					?>						
+					
+					<ul class="pagination">
+						<li><a href="?pageno=1">First | </a></li>
+						<li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+							<a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev |</a>
+						</li>
+						<li class="<?php if($pageno >= $totalPages){ echo 'disabled'; } ?>">
+							<a href="<?php if($pageno >= $totalPages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>"> Next</a>
+						</li>
+						<li><a href="?pageno=<?php echo $totalPages; ?>"> | Last</a></li>
+					</ul>
+
 				</div>					
 
 				<div class="col-lg-3 d-none d-lg-block sideLane">
