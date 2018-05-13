@@ -95,9 +95,14 @@ Version 1.0
 	{
 	//starts the function to display the page nav area        
 	?>	
-		<nav class="navbar navbar-expand-lg">
-			<div class="container-fluid">			
-			<a href="http://www.thescrubberyzone.com"><img src="/img/logo1.png" alt="Logo" class="img-fluid"></a>			
+		<nav class="navbar navbar-expand-lg navbar-light">
+			<div class="container-fluid">
+			<div class="logo-lg d-none d-md-block">
+				<a href="https://www.thescrubberyzone.com"><img src="/img/logo1.png" alt="Logo" class="img-fluid"></a>		
+			</div>	
+			<div class="logo-sm d-sm-block d-md-none mx-auto">
+				<a href="https://www.thescrubberyzone.com"><img src="/img/logo1small.png" alt="Logo" class="img-fluid"></a>		
+			</div>			
 			<div class="navbar-header"> 
 			  <!-- Button that toggles the navbar on and off on small screens -->
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -152,33 +157,6 @@ Version 1.0
 					</div>
 					<?php
 					include 'database_conn.php';		
-					//$sql = "SELECT * FROM article ORDER BY ArticleID DESC LIMIT 5";			
-					//$result = $conn->query($sql);
-						
-					//while($row = $result->fetch_assoc())
-					//{
-					//	$title = $row['Title'];
-					//	$date = $row['Date'];
-					//	$image = $row['Image'];
-					//	$content = $row['Content'];
-					//	$linky = $row['PageLink'];
-						
-					//	$contentShrink = substr($content, 0, 150);
-					//	echo "<div class=\"row no-pad\">";
-					//	echo "	<div class=\"col-9 articleTitle\">";
-					//	echo "	<h4>$title</h4>";
-					//	echo "</div>";
-					//	echo "	<div class=\"col-3 articleDate\">$date</div>";					
-					//	echo "</div>";
-					//	echo "<div class=\"col-lg-12 articleImage\">";
-					//	echo "  <img src=\"img/$image\" class=\"img-fluid\"/>";	
-					//	echo "</div>";	
-					//	echo "<div class=\"col-lg-12 articleText\">";	
-					//	echo "	<p>$contentShrink...</p>";	
-					//	echo "	<p><a href=\"article/$linky.php\">Click here to read more...</a></p>";	
-					//	echo "</div>";	
-						
-					//}	
 					//Pagination is adapated from a tutorial
 					if (isset($_GET['pageno'])) 
 					{
@@ -189,7 +167,7 @@ Version 1.0
 						$pageno = 1;
 					}		
 					$articlesPerPage = 5; // 5 articles per page currently. easily adjusted here	
-					$offset = ($pageno - 1) * $articlesPerPage;	//
+					$offset = ($pageno - 1) * $articlesPerPage;	//Need this to use as an offest in the SQL query to get data for different pages
 					
 					$sql2 = "SELECT COUNT(*) FROM article";		
 					$result2 = $conn->query($sql2);
