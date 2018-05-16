@@ -187,3 +187,56 @@ html
   padding-left:0;
 }
 
+.pagZone
+{
+	border-left: 2px solid #5B0505;
+	border-bottom: 2px solid #5B0505;
+	border-right: 2px solid #5B0505;
+	background-color: #5B0505;
+	font-size: 24px;
+	padding-top: 10px;
+}
+
+.pagZone2
+{
+	border-left: 2px solid #5B0505;
+	border-bottom: 2px solid #5B0505;
+	border-right: 2px solid #5B0505;
+	background-color: #5B0505;
+	font-size: 12px;
+	padding-top: 10px;
+}
+
+.pagZone ul li, .pagZone2 ul li
+{
+	text-align: center;
+	border: 1px solid white;
+}
+
+.pagZone ul li:hover, .pagZone2 ul li:hover
+{
+	background-color: #fff6b5;
+}
+
+.pagZone a, .pagZone2 a
+{	
+	color:white;
+	text-decoration:none;
+	padding-right: 15px;
+	padding-left: 15px;
+	font-family: Do Hyeon;
+}
+
+.pagZone a:hover, .pagZone2 a:hover
+{
+	color: black;
+	text-decoration: none;
+	
+}
+
+.pagZone a:active, .pagZone2 a:active
+{
+	color: black;
+	text-decoration: none;
+	text-shadow: 1px 1px 1px #000;
+}

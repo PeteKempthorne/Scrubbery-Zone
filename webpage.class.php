@@ -97,18 +97,19 @@ Version 1.0
 	?>	
 		<nav class="navbar navbar-expand-lg navbar-light">
 			<div class="container-fluid">
-			<div class="logo-lg d-none d-md-block">
-				<a href="https://www.thescrubberyzone.com"><img src="/img/logo1.png" alt="Logo" class="img-fluid"></a>		
-			</div>	
-			<div class="logo-sm d-sm-block d-md-none mx-auto">
-				<a href="https://www.thescrubberyzone.com"><img src="/img/logo1small.png" alt="Logo" class="img-fluid"></a>		
-			</div>			
-			<div class="navbar-header"> 
-			  <!-- Button that toggles the navbar on and off on small screens -->
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-				</button>		
-			</div>
+				<div class="logo-lg d-none d-md-block">
+					<a href="https://www.thescrubberyzone.com"><img src="/img/logo1.png" alt="Logo" class="img-fluid"></a>		
+				</div>	
+				<!-- Small logo for mobile-->
+				<div class="logo-sm d-sm-block d-md-none mx-auto">
+					<a href="https://www.thescrubberyzone.com"><img src="/img/logo1small.png" alt="Logo" class="img-fluid"></a>		
+				</div>			
+				<div class="navbar-header"> 
+				  <!-- Button that toggles the navbar on and off on small screens -->
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+					</button>		
+				</div>
 		  
 			<!-- Nav links that go inside the collapsable menu when small screen or outside as normal links when not-->
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -158,16 +159,16 @@ Version 1.0
 					<?php
 					include 'database_conn.php';		
 					//Pagination is adapated from a tutorial
-					if (isset($_GET['pageno'])) 
+					if (isset($_GET['pg'])) 
 					{
-						$pageno = $_GET['pageno'];
+						$pg = $_GET['pg'];
 					} 
 					else
 					{
-						$pageno = 1;
+						$pg = 1;
 					}		
 					$articlesPerPage = 5; // 5 articles per page currently. easily adjusted here	
-					$offset = ($pageno - 1) * $articlesPerPage;	//Need this to use as an offest in the SQL query to get data for different pages
+					$offset = ($pg - 1) * $articlesPerPage;	//Need this to use as an offest in the SQL query to get data for different pages
 					
 					$sql2 = "SELECT COUNT(*) FROM article";		
 					$result2 = $conn->query($sql2);
@@ -194,7 +195,7 @@ Version 1.0
 						echo "	<div class=\"col-3 articleDate\">$date</div>";					
 						echo "</div>";
 						echo "<div class=\"col-lg-12 articleImage\">";
-						//Making the iamge also a link to click through
+						//Making the image also a link to click through
 						echo "  <a href=\"article/$linky.php\"><img src=\"img/$image\" class=\"img-fluid\" alt\"$title\"/></a>";	
 						echo "</div>";	
 						echo "<div class=\"col-lg-12 articleText\">";	
@@ -204,18 +205,30 @@ Version 1.0
 					}
 					mysqli_close($conn);					
 					?>						
-					
-					<ul class="pagination">
-						<li><a href="?pageno=1">First | </a></li>
-						<li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-							<a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev |</a>
-						</li>
-						<li class="<?php if($pageno >= $totalPages){ echo 'disabled'; } ?>">
-							<a href="<?php if($pageno >= $totalPages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>"> Next</a>
-						</li>
-						<li><a href="?pageno=<?php echo $totalPages; ?>"> | Last</a></li>
-					</ul>
-
+					<div class="col-12 pagZone d-none d-md-block">
+						<ul class="pagination justify-content-center">
+							<li><a href="?pg=1"><< First</a></li>
+							<li class="<?php if($pg <= 1){ echo 'disabled'; } ?>">
+								<a href="<?php if($pg <= 1){ echo '#'; } else { echo "?pg=".($pg - 1); } ?>">< Prev</a>
+							</li>
+							<li class="<?php if($pg >= $totalPages){ echo 'disabled'; } ?>">
+								<a href="<?php if($pg >= $totalPages){ echo '#'; } else { echo "?pg=".($pg + 1); } ?>">Next ></a>
+							</li>
+							<li><a href="?pg=<?php echo $totalPages; ?>">Last >> </a></li>
+						</ul>
+					</div>
+					<div class="col-12 pagZone2 d-sm-block d-md-none">
+						<ul class="pagination justify-content-center">
+							<li><a href="?pg=1"><<</a></li>
+							<li class="<?php if($pg <= 1){ echo 'disabled'; } ?>">
+								<a href="<?php if($pg <= 1){ echo '#'; } else { echo "?pg=".($pg - 1); } ?>"><</a>
+							</li>
+							<li class="<?php if($pg >= $totalPages){ echo 'disabled'; } ?>">
+								<a href="<?php if($pg >= $totalPages){ echo '#'; } else { echo "?pg=".($pg + 1); } ?>">></a>
+							</li>
+							<li><a href="?pg=<?php echo $totalPages; ?>">>> </a></li>
+						</ul>
+					</div>
 				</div>					
 
 				<div class="col-lg-3 d-none d-lg-block sideLane">
